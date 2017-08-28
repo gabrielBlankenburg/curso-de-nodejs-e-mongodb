@@ -1,27 +1,13 @@
-// chama o express, e ele retorna uma função
-var express = require('express');
-// chama o modulo teste
-var msg = require('./mod_test');
-// executa a funcao que o express retornou
-var app = express();
+var app = require('./config/server');
 
-// set the view engine to ejs
-app.set('view engine', 'ejs');
+// Chama a rota de noticias
+var rotaNoticias = require('./app/routes/noticias')(app);
 
-// Configura resposta para o root ('/')
-app.get('/', function(req, res){
-	res.render('home/index');
-});
+var rotaHome = require('./app/routes/home')(app);
 
-app.get('/formulario_inclusao_noticia', function(req, res){
-	res.render('admin/form_add_noticia');
-});
-
-app.get('/noticias', function(req, res){
-	res.render('noticias/noticias');
-});
+var rotaFormInclusaoNoticia = require('./app/routes/formulario_inclusao_noticia')(app);
 
 // Escuta requisições na porta 3000
 app.listen(3000, function(){
-	console.log(msg());
-})
+	console.log('running');
+});
