@@ -15,7 +15,7 @@ module.exports = function(app){
 
 		// parametros sao a query e o callback
 		connection.query('select * from noticias', function(error, result){
-			res.send(result);
+			res.render('noticias/noticias', {noticias: result});
 		});
 
 	});
