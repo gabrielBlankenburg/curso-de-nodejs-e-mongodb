@@ -11,6 +11,10 @@ app.set('views', './app/views')
 app.set('view engine', 'ejs');
 
 // o consign reconhece todos os modules de routes e manda para o app
-consign().include('app/routes').into(app)
+consign()
+	.include('app/routes')
+	// E depois carrega o dbConnection.js
+	.then('config/dbConnection.js')
+	.into(app);
 
 module.exports = app;
