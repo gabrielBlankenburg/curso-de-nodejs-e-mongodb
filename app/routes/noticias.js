@@ -6,10 +6,14 @@ module.exports = function(app){
 		// Pega a conexão do dbConnection
 		var connection = app.config.dbConnection();
 
-		// parametros sao a query e o callback
-		connection.query('select * from noticias', function(error, result){
+		// Acessa o noticiasModel
+		var noticiasModel = app.app.models.noticiasModel;
+
+		// Chama a função getNoticias do noticias model, passando como parametro a conexão e o callback
+		noticiasModel.getNoticias(connection, function(error, result){
 			res.render('noticias/noticias', {noticias: result});
 		});
+
 
 	});
 };

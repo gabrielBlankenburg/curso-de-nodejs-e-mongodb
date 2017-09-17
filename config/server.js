@@ -15,6 +15,7 @@ consign()
 	.include('app/routes')
 	// E depois carrega o dbConnection.js
 	.then('config/dbConnection.js')
+	.then('app/models')
 	.into(app);
 
 module.exports = app;
